@@ -125,16 +125,18 @@ const listPeopleChoices = () => {
 
 const makePlayer = (id) => {
   // Add to Players , Remove from People
-  let removeItem = document.getElementById(id);
-  removeItem.remove()
+
   for (let obj of arrOfPeople){
     if (obj.id == id){
       addNewPlayer(obj)
       arrOfPeople.splice(obj,1);  
     }
   }
+  let removeItem = document.getElementById(id);
+  removeItem.remove()
   updateDisplay()
-  // listPeopleChoices()
+ 
+  
 }
 
 
