@@ -115,38 +115,28 @@ const listPeopleChoices = () => {
     li.setAttribute("id", person.id)
     const button = document.createElement("button")
     button.innerHTML = "Make Player"
-    button.addEventListener('click', function() {makePlayer(person)} )
+    button.addEventListener('click', function() {
+      makePlayer(person.id)} )
     li.appendChild(button)
     li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
     listElement.append(li)
   })
 }
 
-const makePlayer = (person) => {
+const makePlayer = (id) => {
   // Add to Players , Remove from People
-  removeFromPeopleList(person)
-  addNewPlayer(person)
+  let removeItem = document.getElementById(id);
+  removeItem.remove()
+  for (let obj of arrOfPeople){
+    if (obj.id == id){
+      addNewPlayer(obj)
+      arrOfPeople.splice(obj,1);  
+    }
+  }
   updateDisplay()
-  listPeopleChoices()
+  // listPeopleChoices()
 }
 
-function removeFromPlayerList(player) {
-  for(let obj of listOfPlayers){
-    if (obj == player){
-    // Remove from Players
-    listOfPlayers.splice(obj,1)
-    }
-  }
-}
-
-function removeFromPeopleList(person) {
-  for(let obj of arrOfPeople){
-    if (obj == person){
-    // Remove from Players
-    arrOfPeople.splice(obj,1)
-    }
-  }
-}
 
 function updatePlayerDisplay() {
   const listElementP = document.getElementById('players');
@@ -161,13 +151,13 @@ function updatePlayerDisplay() {
     const buttonB = document.createElement("button");
     buttonB.setAttribute("id","blueTeam");
     buttonB.innerHTML = "Make Blue Player";
-    buttonB.addEventListener('click', function() {addBlueTeam(person);});
+    buttonB.addEventListener('click', function() {addBlueTeam(person.id);});
     
     // Creating button for Red Team
     const buttonR = document.createElement("button");
     buttonR.setAttribute("id","redTeam");
     buttonR.innerHTML = "Make Red Player";
-    buttonR.addEventListener('click', function() {addRedTeam(person);});
+    buttonR.addEventListener('click', function() {addRedTeam(person.id);});
 
     // Addd Buttons to List Items
     li.appendChild(buttonB);
@@ -208,18 +198,32 @@ function addNewPlayer(person){
 
 
 // create new object
-function addBlueTeam(bluePlayer){
-  removeFromPlayerList(bluePlayer);
-  blueTeam.push(bluePlayer)
-  updateDisplay();
+function addBlueTeam(id){
+  let removeItem = document.getElementById(id);
+  removeItem.remove()
+  for (let obj of listOfPlayers){
+    if (obj.id == id){
+      listOfPlayers.splice(obj,1); 
+      blueTeam.push(obj) 
+      updateDisplay();
+    }
+  }
+
 }
 
 
 // create new object
-function addRedTeam(redPlayer){
-  removeFromPlayerList(redPlayer);
-  redTeam.push(redPlayer)
-  updateDisplay();
+function addRedTeam(id){
+  let removeItem = document.getElementById(id);
+  removeItem.remove()
+  for (let obj of listOfPlayers){
+    if (obj.id == id){
+      listOfPlayers.splice(obj,1);
+      redTeam.push(obj)  
+      updateDisplay();
+    }
+  }
+
 }
 
 // // Testing 
