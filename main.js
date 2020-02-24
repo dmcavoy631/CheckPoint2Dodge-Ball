@@ -1,12 +1,11 @@
 "use strict";
-
+module.exports = function (){return "hello"}
 const arrOfPeople = [
   {
     id: 2,
     name: "Charles Young",
     age: 55,
     skillSet: "welding",
-    placeBorn: "Omaha, Nebraska"
   },
   {
     id: 3,
@@ -88,9 +87,6 @@ class redTeammate extends player {
     this.mascot = mascot,
     this.color = color,
     this.redTeam = []
-  }
-  addMember(redPlayer){
-    this.redTeam.push(redPlayer);
   }
 }
 
@@ -228,7 +224,7 @@ function addRedTeam(id){
 
 }
 
-// // Testing 
+// Testing 
 
 // if (typeof describe === "function") {
 //   describe("addRedTeam(redPlayer)", () => {
